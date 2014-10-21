@@ -1,0 +1,38 @@
+
+______/\\\\\\\\\\\_   ________/\\\\\\\\\_        
+ _____\/////\\\///__   _____/\\\////////__       
+  _________\/\\\_____   ___/\\\/___________      
+   _________\/\\\_____   __/\\\_____________     
+    _________\/\\\_____   _\/\\\_____________    
+     _________\/\\\_____   _\//\\\____________   
+      __/\\\___\/\\\_____   __\///\\\__________  
+       _\//\\\\\\\\\______   ____\////\\\\\\\\\_ 
+        __\/////////_______   _______\/////////__
+
+
+
+Develop & Main Design : Jordi Casamiquela Pérez
+Site                  : http://www.casamiquela.es/
+Language              : Spanish
+Flickr                : http://bit.ly/JordiCasamiquela
+Twitter               : @j_casamiquela
+Made in               : Barcelona, Spain
+
+
+
+/* SPECIAL THANKS */
+
+- ImageOptim Team [http://bit.ly/ImageOptim_]
+- Grunt and his awesome community [http://bit.ly/grunt_]
+- IcoMoon [http://bit.ly/icomoon_]
+- Manoela Ilic from Codrops [@crnacura]
+- Andrea Verlicchi developer of picturePolyfill 4 [http://bit.ly/picturePolyfill]
+- Don Park developer of time-saver html2jade [http://bit.ly/1oDoiNt]
+- Ben Howdle and Jack Smith developers of Svgeezy [bit.ly/svgeezy]
+- Modernizr Team:
+    + Stu Cox         [@stucoxmedia]
+    + Ryan Seddon     [@ryanseddon]
+    + Paul Irish      [@paul_irish]
+    + Patrick Kettner [@patrickkettner]
+    + Alex Sexton     [@SlexAxton]
+    + Faruk Ateş      [@KuraFire]

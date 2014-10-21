@@ -1,0 +1,103 @@
+/*======================
+    · Botons
+=======================*/
+
+$btn-color    : $secondary-color;
+$btn-fontsize : 21px;
+
+
+@mixin btn-type1 {
+
+  @include font-size($btn-fontsize);
+  width            : 200px;
+  height           : 60px;
+  outline          : none;
+  color            : $btn-color;
+  text-transform   : uppercase;
+  border           : 3px solid $btn-color;
+  background-color : transparent;
+  transition       : 0.7s;
+
+  &:hover {
+
+    background-color : $btn-color;
+
+  }
+
+}
+
+
+
+.btn1 {
+
+  @include btn-type1;
+
+  &:hover {
+    
+    color            : $white;
+    border-radius    : 5px;
+
+  }
+
+}
+
+.btn2 {
+
+  @include btn-type1;
+
+  &:hover {
+
+    color            : $white;
+    transform        : translateY(10%);
+
+  }
+}
+
+.btn3 {
+
+  @include btn-type1;
+
+  &:hover{
+
+    color      : $primary-color-alt;
+    background : transparent;
+    border     : 3px solid $primary-color-alt;
+
+  }
+}
+
+
+@mixin btn-type2() {
+
+  @include font-size($btn-fontsize);
+  width            : 200px;
+  height           : 60px;
+  border           : none;
+  background-color : $btn-color;
+  text-transform   : uppercase;
+  color            : $white;
+  border-radius    : 4px;
+  outline          : none;
+  transition       : 0.7s;
+
+  &:hover {
+
+    background-color : #27AE60;
+    transition       : 1s;
+
+  }
+}
+
+
+.btn4 {
+
+  @include btn-type2;
+
+}
+
+.btn5 {
+
+  @include btn-type2;
+  box-shadow: 0px 5px 0px darken($btn-color, 13%);
+
+}

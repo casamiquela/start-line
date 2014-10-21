@@ -1,0 +1,39 @@
+/*======================
+    · formulari
+=======================*/
+
+
+form {
+
+	max-width: 90%;
+	margin: 0 auto;
+}
+
+
+fieldset, .form-name, .form-text_area {
+	display: flex;
+	margin-bottom: $gutterwidth;
+
+}
+
+$label-width: 25%;
+$input-width: (100%)-$label-width;
+
+	input, textarea {
+		// flex: 2;
+		// margin-left: 10%;
+		width: $input-width;
+
+	}
+
+	label {
+		width: $label-width;
+	}
+
+
+	.form-send {
+	@extend .btn1;
+	margin-left: $label-width;
+	width: $input-width;
+	height: $gutterwidth*2;
+}

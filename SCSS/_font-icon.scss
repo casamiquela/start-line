@@ -1,0 +1,63 @@
+/*============================
+		·  FW: Font Icon
+============================*/
+
+@include font-face(icomoon, '#{$fonticon}icomoon', normal, normal);
+
+@mixin font-specs{
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	//vertical-align: middle;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+//check it
+// .font-icon-before {
+// 	padding-right: 10px;
+// }
+
+// .font-icon-after {
+// 	padding-left: 10px;
+// }
+
+
+[class^="icon-"],[class*="icon-"] { @include font-specs }
+
+
+/////////////////////////////////////////
+/////////////////////////////////////////
+
+
+.icon-microphone:before {
+	content: "\e600";
+}
+.icon-transformers:before {
+	content: "\e601";
+}
+.icon-batman:before {
+	content: "\e602";
+}
+.icon-spaceinvaders:before {
+	content: "\e603";
+}
+.icon-bomb:before {
+	content: "\e604";
+}
+.icon-diamond:before {
+	content: "\e605";
+}
+.icon-atom:before {
+	content: "\e606";
+}
+.icon-yingyang:before {
+	content: "\e607";
+}
+.icon-navigation:before {
+	content: "\e608";
+}

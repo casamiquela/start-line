@@ -1,0 +1,865 @@
+@import "bourbon";
+@import "framework";
+@import "variables";
+@import "mixins";
+@import "breakpoints";
+@import "setup";
+@import "helpers";
+@import "reset--custom";
+@import "tipo";
+@import "blockquote";
+@import "font-icon";
+@import "botons";
+@import "formulari";
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+
+/*======================
+    · Guía
+=======================*/
+
+
+// 1. Core ///
+// ===========
+
+// $border per separar les caixes
+$border: dotted 1px rgba($new_grey, 0.9); 
+
+// marge-horitzontal
+@mixin marge-horitzontal {
+
+	@include bp(bp3, $max) {
+		max-width: 80%;
+		margin: auto;
+
+	}
+}
+
+// extends
+.display_flex 				{display: flex}
+.display_flex-column 	{@extend .display_flex; flex-direction: column}
+
+
+// padding comú
+$g_pad-comu           : $gutterwidth*5;
+$g_pad-comu-mob       : $gutterwidth*3;
+$g_pad-comu-mob--half : round($g_pad-comu-mob/2);
+
+
+//---títols i etiquetes per les seccions--//
+
+// variables
+$g_titol-text--size  : 18;
+$g_titol-text--color : $white;
+$g_titol-bg--color   : $salmon;
+$g_titol-padding-top : $gutterwidth;
+$g_tag-text--color   : lighten($black, 25%);
+
+
+// estils comuns entre :after i :before
+@mixin g_titol-comu {
+	
+	@include font-size($g_titol-text--size + 3);
+	content        : attr(name);
+	position       : absolute;
+	top            : 0;
+	text-align     : center;
+	padding-top    : $gutterwidth;
+	color          : $g_titol-bg--color;
+	font-weight    : $fontweight-heading--bold ;
+	letter-spacing : 1px;
+	width          : 100%;
+
+	@include bp(bp3) { 
+
+		@include font-size($g_titol-text--size);
+		font-weight : $fontweight-heading--normal ;
+		padding     : round($gutterwidth/5) round($gutterwidth/2);
+		width       : auto;
+
+	}//bp3
+}
+
+
+// títol (:before)
+@mixin g_titol {
+
+	position: relative;
+
+	&:before {	
+		@include g_titol-comu;
+		font-family    : $heading-fontfamily;
+		font-variant   : small-caps;
+		left           : 0;
+
+		@include bp(bp3) {
+			content        : attr(name);
+			left           : 0;
+			background     : $g_titol-bg--color;
+			color          : $g_titol-text--color;
+			border-radius  : 0 0 5px 0;
+			// box-shadow     : 1px 1px 2px 0px rgba(0,0,0,0.15);
+
+		} 
+	} //before
+}
+
+
+// etiquetes (:after)
+@mixin g_titol-etiqueta($text: null) {
+	
+	&:after {
+		@include g_titol-comu;
+		@include bp(bp3, $max) {@include hide;}
+		
+		@include bp(bp3) {
+
+			@include font-size(round($g_titol-text--size/1.2));
+			content       : '#{$text}';
+			right         : 0;
+			color         : $g_tag-text--color;
+			font-style    : italic;
+
+		}
+	}
+}
+
+
+section[name], article[name] { @include g_titol; }
+
+
+//--layout/wrap--//
+
+// width del nav que s'adaptarà a l'amplada del contingut i el seu marge, ja que el nav resta en fixed
+$g_nav-width: 15%;
+
+
+// amagar la barra de navegació per la versió mòbil. El contingut s'expandirà fins $bp3
+
+@media only screen and (max-width: 780px) { nav { @include hide } }
+
+#g_contingut {
+	width: 100%;
+
+	@include bp(bp3) {
+		float       : left;
+		width       : (100% - $g_nav-width);
+		margin-left : $g_nav-width;
+	}
+
+}
+
+
+
+// 2. Barra_de_navegació /////
+// ===========================
+
+$g_nav-bg-color          : lighten($black, 1);
+$g_nav-bg-color--hover   : $red;
+$g_nav-text-color        : $white;
+
+nav {
+
+	// si no és igual a $text-color descomentar
+	// $text-color--hover : $white;
+
+	@include bp(bp3) {
+
+		@include flex-center;
+		position   : fixed;
+		width      : $g_nav-width;
+		height     : 100%;
+		float      : left;
+		display    : flex;
+		flex-flow  : column wrap;
+		background : $g_nav-bg-color;
+		color      : $g_nav-text-color;
+
+		a {
+
+			@include font-size(29);
+			@include transition-base;
+
+			font-family    : $heading-fontfamily;
+			font-weight    : $fontweight-heading--bold;
+			font-variant   : small-caps;
+			text-align     : center;
+			letter-spacing : 2px;
+			padding        : $gutterwidth 0;
+			width          : 100%;
+
+			&:hover {
+				background : $g_nav-bg-color--hover;
+
+			}
+
+		} //a
+	} //bp3
+} //nav
+
+
+// menu horizontal per pantalles petites
+
+@media only screen and (max-width: 1000px) {
+
+	nav {
+
+		height     : auto;
+		float      : none;
+		position   : relative;
+		min-width  : 100%;
+		flex-flow  : row nowrap;
+		color      : $g_nav-bg-color;
+		background : $g_nav-text-color;
+
+		a {
+			width : auto;
+			flex  : 1 100%;
+
+			&:hover {
+				background : $g_nav-text-color;
+				color      : $g_nav-bg-color--hover;
+			}
+		}//a
+	}//nav
+
+	#g_contingut {
+		width  : 100%;
+		float  : none;
+		margin : 0;
+	}
+
+}//bp
+
+
+
+// 3. Color //////
+// ===============
+
+#g_color {
+
+	@include flex-center;
+	@extend .display_flex-column;
+	background     : lighten($new-grey, 5);
+	padding        : $g_pad-comu-mob 0;
+	
+	figure {
+
+		$border-radius: 5px;
+		@include flex-center;
+		@extend .display_flex;
+		width         : 90%;
+		height        : 100px;
+		position      : relative;
+		border-radius : $border-radius;
+		background    : $white;
+
+		@include bp(bp3, $max) {
+
+			box-shadow    : 2px 2px 4px 0px rgba(0,0,0,0.2);
+			margin-bottom : 2em;
+		}
+
+
+		h5 {
+
+			@include font-size();
+			width       : 81%;
+			margin-left : $gutterwidth;
+			margin-top  : -$gutterwidth;
+
+			&:after {
+
+				position : absolute;
+				bottom   : $gutterwidth*1.2;
+				left     : $gutterwidth;
+
+			}
+
+	} //h5
+
+	&:after {
+
+		content       : '';
+		padding-right : 25%;
+		height        : 100%;
+		border-radius : 0 $border-radius $border-radius 0;
+
+		@media only screen and (min-width: 430px) {
+
+			padding-right: 50%;
+
+		}
+
+	}//after
+
+
+	&:last-child { margin-bottom: 0 }
+
+}
+
+}
+
+
+@mixin g_swatch($color) {
+	&:after 		{background: $color; }
+	h5:before 	{content: '$color'; }
+	h5:after 		{content: '#{$color}'; color: $color}
+}
+
+
+.g_swatch-primary 				{ @include g_swatch($primary-color) }
+.g_swatch-primary--alt 		{ @include g_swatch($primary-color-alt) }
+.g_swatch-secondary  			{ @include g_swatch($secondary-color) }
+.g_swatch-secondary--alt 	{ @include g_swatch($secondary-color-alt) }
+
+
+
+@media only screen and (min-width: 800px) {
+
+	#g_color {
+
+		flex-direction : row;
+		padding        : $g_pad-comu round($gutterwidth/2);
+		h5 {@include font-size(14);}
+		// padding        : $gutterwidth*5 0;
+
+		figure {
+
+			margin-top    : 140px;
+			margin-left   : 2%;
+			max-width     : $gutterwidth*11;
+			height        : 80px;
+
+			&:first-child { margin-left: 0; }
+			&:last-child 	{ margin-right: 0; }
+
+			&:after {
+
+				content       : '';
+				padding-right : 0;
+				padding-top   : $gutterwidth*7;
+				position      : absolute;
+				left          : 0;
+				bottom        : 80px;
+				width         : 100%;
+				border-radius : 5px 5px 0 0;
+
+			}
+
+
+			h5 {
+
+			// width       : 100%;
+			margin-left : 0;
+			text-align  : center;
+
+			&:after {
+
+				width       : 100%;
+				text-align  : center;
+				left        : 0;
+				bottom      : $gutterwidth;
+
+			}
+
+		}//h5
+
+	} //#g_color figure
+}
+
+
+
+}
+
+
+
+// 4. Paleta de color 
+// ======================
+
+.g_paleta_de_color {
+
+	@include bp(bp2, $max) { @include hide }
+	padding    : $g_pad-comu-mob 0;
+	background : lighten($zoneV, 10%);
+
+	ul {
+
+		@extend .display_flex;
+		text-decoration: none;
+
+	}
+
+	li {
+
+		@include transition-base;
+		font-family    : $heading-fontfamily;
+		height         : $g_pad-comu;
+		flex           : 1;
+		list-style     : none;
+		letter-spacing : 1px;
+
+		&:hover { flex: 4; }
+
+	}
+} //.g_paleta_de_color
+
+@media only screen and (max-width: 1100px) {
+
+	.g_paleta_de_color li:hover { flex: 6; }
+
+}
+
+
+// backgrounds
+// -------------
+
+
+$llistat_de_colors: ("paloma", $paloma), ("white", $white), ("black", $black), ("new_grey", $new_grey), ("warm_grey", $warm_grey), 
+										("zoneIX", $zoneIX), ("zoneVII", $zoneVII), ("zoneV", $zoneV), ("zoneIV", $zoneIV), ("zoneII", $zoneII),
+										("red", $red), ("salmon", $salmon), ("cayenne", $cayenne),("tangerine", $tangerine),("orange", $orange),
+										("turquesa", $turquesa), ("turquesa-d", $turquesa-d), ("green", $green),("green-d", $green-d),
+										("blue", $blue),("blue-d", $blue-d),("dazzling_blue", $dazzling_blue),("celeste", $celeste),("celeste-d", $celeste-d),
+										("pink", $pink),("violet", $violet),("violet-d", $violet-d),
+										("yellow", $yellow),("yellow-d", $yellow-d)
+										;
+
+@each $var1, $var2 in $llistat_de_colors {
+	.#{$var1} {background-color: $var2;}
+}
+
+
+
+// tooltip de la paleta de color
+// -----------------------------
+
+li[data-tooltip] {
+
+	position: relative;
+	
+	&:before,
+	&:after {
+
+		position: absolute;
+		top: 0;
+		display: none;
+
+	}
+	
+	&:before {
+
+		@include font-size();
+		content         : attr(data-tooltip);
+		font-weight     : $fontweight-heading--normal;
+		padding         : $gutterwidth/4 $gutterwidth/2;
+		border-radius   : 0 0 5px 0;
+		white-space     : nowrap;
+		text-decoration : none;
+		color           : $zoneIV;
+		background: $white;
+
+	}
+
+	&:after {
+		content : '';
+		width   : 0;
+		height  : 0;
+		border  : 6px solid transparent; // check it: 6px?
+
+	}
+	
+	&:hover:before, 
+	&:hover:after { display : block;}
+
+}
+
+
+
+// 5. TIPOGRAFIA ////////
+//=======================
+
+#g_tipografia {
+	@extend .display_flex-column; 
+	
+	> article {
+		border-bottom: $border;
+		padding: $g_pad-comu-mob 0;
+		@include bp(bp3) {padding: $g_pad-comu 0;}
+	}
+
+}
+
+
+// 5.1. Capçalera 
+//---------------------
+
+.g_capsalera {
+	@include marge-horitzontal;
+	@extend .display_flex-column;
+
+
+	@include bp(bp3) {
+
+		h1, h2, h3, h4, h5 {
+			margin-left: $g_pad-comu-mob;
+		}
+
+		
+		@for $i from 1 through 5 { 
+
+			h#{$i}:before {
+				content: 'h#{i}';
+				@include font-size ($h5-fontsize);
+				padding-right : round($g_pad-comu-mob/2);
+				color         : $salmon;
+				
+			}
+		}  
+		
+	} //bp3
+} //g_capsalera
+
+
+
+// 5.2. Familia de la font 
+//----------------------------
+
+.g_famila {
+	@extend .display_flex-column;
+	padding       : 0 !important;
+
+	@include bp(bp3) { flex-direction: row; }
+}
+
+
+.g_fam {
+
+	@include g_titol;
+	@include marge-horitzontal;
+	@extend .display_flex-column;
+
+	@include bp(bp3) {
+
+		min-width      : 50%;
+		padding-bottom : $g_pad-comu-mob;
+		&:nth-of-type(2) {
+
+			border-left: $border;
+
+
+		}
+	}
+
+
+	h1 {
+
+		@include font-size(round($goldenratio * 22));
+		text-align : center;
+		padding    : $g_pad-comu-mob 0 $gutterwidth 0;
+
+		&:after {
+			content        : '#{$tk-sans-font}';
+			text-transform : capitalize;
+			color          : $black;
+
+		}
+	}
+
+	p {
+
+		letter-spacing : 3px;
+		font-family    : $heading-fontfamily;
+		font-weight    : $fontweight-body--normal;
+		width          : 90%;
+		text-align     : center;
+		margin         : auto;
+		word-break     : break-all;
+
+		@include bp(bp3, $max) {
+			&:last-child { padding-bottom: $gutterwidth; }
+		}
+
+	}
+
+	&:nth-of-type(2) {
+
+		// border-left: $border;
+		h1, p { font-family: $base-fontfamily; }
+		h1:after { content: '#{$tk-serif-font}'}
+
+	}
+
+
+} //.g_fam
+
+
+
+// 5.3. Paràgraf 
+//-----------------
+
+.g_paragraf {
+	@include flex-center;
+	@include marge-horitzontal;
+	@extend .display_flex;
+
+	p {
+		
+		width       : $page-width;
+		max-width   : $max-width;
+		text-indent : $text-indent;
+
+	}
+}
+
+
+// 5.4. Links 
+// ------------
+
+.g_links {
+	@include marge-horitzontal;
+	padding       : $g_pad-comu-mob 0 !important;
+	text-align    : center;
+
+}
+
+
+// 5.5. Llistes 
+// ---------------
+
+.g_llistes {
+	@include flex-center;
+	@include marge-horitzontal;
+	@extend .display_flex-column;
+	padding: 0 !important;
+
+
+
+
+	ul, ol {
+		@include g_titol;
+		min-width  : 100%;
+		padding-top    : $g_pad-comu-mob;
+
+	}
+
+	ul {
+		@include g_titol-etiqueta("$ul-list-style: #{$ul-list-style}");
+		padding-bottom    : $g_pad-comu-mob;
+
+		&:nth-of-type(1) { padding-bottom: $gutterwidth*2; }
+
+	}
+
+	ol {
+		@include g_titol-etiqueta("$ol-list-style: #{$ol-list-style}");
+	}
+
+	
+
+	@include bp(bp3) {
+
+		flex-direction: row;
+
+		ul, ol {
+			min-width: 50%;
+			padding: $gutterwidth*3;
+
+		}
+
+		ol { border-right: $border;}
+		ul:nth-of-type(1) { padding-bottom: $gutterwidth*3;}
+		
+	}
+
+}
+
+
+// 5.6. Cites 
+//-------------
+
+.g_blockquotes {
+	@include flex-center;
+	@extend .display_flex;
+	background : lighten($new_grey, 1);
+	min-width  : 100%;
+
+	@include bp(bp3) { padding: $gutterwidth*3 0;}
+
+}
+
+.g_typo--misc {
+
+	@include flex-center;
+	@extend .display_flex;
+	text-align: center;
+
+}
+
+// 5.7. Color del text seleccionat
+// -------------------------------
+
+.g_text-seleccionat {
+	@include g_titol-etiqueta("$highlight-bg: #{$highlight-bg}");
+	text-align: center;
+
+	p {
+		padding: 0 2%;
+		@include bp(bp3) { padding : 0; }
+	}
+
+	@at-root .g_text-seleccionat-exemple {
+		background:$highlight-bg;
+		padding: 0 5px;
+	}
+}
+
+// 5.8. Text FX
+//---------------
+
+.g_long_shadow-text,
+.g_letterpress {
+	@include flex-center;
+	@include g_titol-etiqueta('.long_shadow-text');
+	background: $warm_grey;
+	@include bp(bp3) { padding : $gutterwidth*4 0; }
+}
+
+.g_long_shadow-text {
+	@extend .display_flex-column;
+}
+
+
+.g_letterpress {
+	@extend .display_flex;
+	background: lighten($new_grey, 13%);
+	@include g_titol-etiqueta('.letterpress');
+
+}
+
+.letterpress {
+	@include font-size(21);
+	@include letterpress;
+	
+	
+}
+
+
+
+
+// 6. ICONES ////
+// ==============
+
+// 6.1. font-icons 
+// ------------------
+
+.g_font-icons {
+
+	@include flex-center;
+	@extend .display_flex;
+	padding-top: $g_pad-comu-mob;
+	flex-wrap : wrap;
+
+	span {
+		@include font-size(round($gutterwidth/2));
+		@extend .display_flex-column;
+		padding        : $gutterwidth;
+		text-align     : center;
+		
+
+		&:before {
+			@include font-size($gutterwidth*2);
+			margin-bottom  : round($gutterwidth/2);
+		}
+	} //span
+
+	@include bp(bp3) {
+		background : darken($black, 3%);
+		color      : white;
+		padding    : $g_pad-comu 0;
+
+		span {
+			@include font-size(round($gutterwidth/1.5));
+			
+			&:before {
+				@include font-size($gutterwidth*4);
+				@include linear-gradient($warm_grey, lighten($new_grey, 13%));
+				border-radius : 5px;
+				padding       : $gutterwidth;
+				color         : black;
+			}
+
+		}
+	} //bp3
+
+} //g_font-icons
+
+
+// 6.2. Favicons 
+// ----------------
+
+.g_favicons {
+	@include flex-center;
+	@extend .display_flex;
+	padding        : $g_pad-comu-mob round($g_pad-comu-mob/2);
+	border-bottom  : $border;
+
+	@include bp(bp3, $max) {
+		
+		img:nth-child(odd) {
+
+			@include hide;
+
+		}
+	}
+
+	img {
+		&:nth-of-type(1)  {width: 310px; max-height: 310px }
+		&:nth-of-type(2)  {width: 196px; max-height: 196px }
+		&:nth-of-type(3)  {width: 160px; max-height: 160px }
+		&:nth-of-type(4)  {width: 144px; max-height: 144px }
+		&:nth-of-type(5)  {width: 114px; max-height: 114px }
+		&:nth-of-type(6)  {width: 96px;  max-height: 96px  }
+		&:nth-of-type(7)  {width: 70px;  max-height: 70px  }
+		&:nth-of-type(8)  {width: 57px;  max-height: 57px  }
+		&:nth-of-type(9)  {width: 32px;  max-height: 32px  }
+		&:nth-of-type(10) {width: 16px;  max-height: 16px  }
+	}
+
+}
+
+
+
+// 7. BOTONS //////
+//=================
+
+#g_botons {
+	
+	@include flex-center;
+	@extend .display_flex;
+	padding    : $g_pad-comu 0;
+	background : darken(white, 1);
+
+	button {
+		
+		margin     : 0 $gutterwidth;
+
+	}
+
+	@include bp(bp3, $max) {
+		flex-direction: column;
+		button {margin: round($gutterwidth/2) 0;}
+	}
+
+}
+
+#g_formulari {
+	@include flex-center;
+	@extend .display_flex;
+	padding    : $g_pad-comu 0;
+	background: $new_grey;
+
+	@at-root .form-exemple{
+		background: $white;
+	}
+}

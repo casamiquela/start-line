@@ -1,0 +1,218 @@
+extends _layout
+
+block vars
+	- seccio  = "guia"
+
+	- paleta_de_color      = "true"
+	- favicons             = "true"
+	- font_icons           = "true"
+	- blockquote           = "true"
+	- llistes              = "true"
+	- text_seleccionat     = "true"
+	- text_fx__long_shadow = "true"
+	- text_fx__letterpress = "true"
+	- botons               = "true"
+	- formulari            = "true"
+
+block contingut
+
+			//-//- Navegació //-//-
+
+			nav
+
+				a(href='#g_color') color
+				
+				a(href='#g_tipografia') tipografia
+				
+				if font_icons == "true"
+					a(href='#g_icones') icones
+				
+				if botons == "true"
+					a(href='#g_botons') botons
+
+				if formulari == "true"
+					a(href='#g_formulari') formulari
+
+				
+				//-//- Contingut //-//-
+
+			section#g_contingut
+
+				//-- color --
+				section#g_color(name="color")
+					figure.g_swatch-primary: h5
+					figure.g_swatch-primary--alt: h5
+					figure.g_swatch-secondary: h5
+					figure.g_swatch-secondary--alt: h5
+
+				//-- paleta de color --
+				if paleta_de_color == "true"
+
+					section.g_paleta_de_color(name="paleta de color")
+						ul
+							li(data-tooltip="$white").white
+							li(data-tooltip="$warm_grey").warm_grey
+							li(data-tooltip="$zoneIX").zoneIX
+							li(data-tooltip="$new_grey").new_grey
+							li(data-tooltip="$zoneVII").zoneVII
+							li(data-tooltip="$zoneV").zoneV
+							li(data-tooltip="$zoneIV").zoneIV
+							li(data-tooltip="$black").black
+							li(data-tooltip="$zoneII").zoneII
+							li(data-tooltip="$paloma").paloma
+
+							li(data-tooltip="$celeste").celeste
+							li(data-tooltip="$celeste-d").celeste-d
+							li(data-tooltip="$blue").blue
+							li(data-tooltip="$blue-d").blue-d
+							li(data-tooltip="$dazzling_blue").dazzling_blue
+
+							li(data-tooltip="$pink").pink
+							li(data-tooltip="$violet").violet
+							li(data-tooltip="$violet-d").violet-d
+
+							li(data-tooltip="$green").green
+							li(data-tooltip="$green-d").green-d
+							li(data-tooltip="$turquesa").turquesa
+							li(data-tooltip="$turquesa-d").turquesa-d
+
+							li(data-tooltip="$cayenne").cayenne
+							li(data-tooltip="$salmon").salmon
+							li(data-tooltip="$red").red
+							li(data-tooltip="$orange").orange
+							li(data-tooltip="$tangerine").tangerine
+
+							li(data-tooltip="$yellow").yellow
+							li(data-tooltip="$yellow-d").yellow-d
+				
+				//-- tipografia --
+				section#g_tipografia
+
+					//-- capçalera --
+					article.g_capsalera(name="capçalera")
+
+						h1 Sóc una capçalera
+						h2 Sóc una capçalera
+						h3 Sóc una capçalera
+						h4 Sóc una capçalera
+						h5 Sóc una capçalera
+					
+					//-- families tipogràfiques --
+					article.g_famila
+
+						.g_fam(name="font del cos")
+								h1
+								p ABCDEFGHIJKLMNOPQRSTUVWXYZ
+								p abcdefghijklmnopqrstuvwxyz
+
+						.g_fam(name="font de la capçalera")
+								h1
+								p ABCDEFGHIJKLMNOPQRSTUVWXYZ
+								p abcdefghijklmnopqrstuvwxyz
+
+					//-- paràgraf --
+					article.g_paragraf(name="paràgraf")
+						p Tyler me consigue un trabajo de camarero, después me mete una pistola en la boca y me dice que para alcanzar la vida eterna primero tienes que morirte. Sin embargo, durante mucho tiempo Tyler y yo fuimos muy buenos amigos. La gente siempre me pregunta si conocía bien a Tyler Durden.
+
+					//-- links --
+					article.g_links(name="links")
+						p Exemple dels estils aplicats a un <a href="#" title="link d'exemple">enllaç</a>.
+
+					//-- blockquote --
+					if blockquote == "true"
+						article.g_blockquotes(name="blockquote")
+							blockquote
+								p El problema de las citas en internet es que son difíciles de comprobar su veracidad.
+								cite Groucho Marx
+
+					//-- llistes --
+					if llistes == "true"
+						article.g_llistes
+							ol(name="llista ordenada")
+								li Citizen Kane
+								li Ladri di biciclette
+								li Tokyo Monogatari
+								li Vertigo
+								li La Règle du Jeu
+
+							ul(name="llista desordena")
+								li 1.5 cups yogurt
+								li 7-8 teaspoon sugar
+								li ½ cup water or cold milk
+								li ½ teaspoon cardamom
+								li 1 pinch saffron
+
+
+					if text_seleccionat == "true"
+						article.g_text-seleccionat(name="text seleccionat")
+							p Color del <span class="g_text-seleccionat-exemple">text seleccionat</span> amb el cursor.
+
+					//-- text fx: long shadow --
+					if text_fx__long_shadow == "true"
+						article.g_long_shadow-text(name="long shadow")
+							h3.long_shadow-text pure css
+
+					//-- text fx: letterpress --
+					if text_fx__letterpress == "true"
+						article.g_letterpress(name="letterpress")
+							h3.letterpress letterpress
+					
+
+
+				//-- icones --
+				section#g_icones
+
+					//-- font icons --
+					if font_icons == "true"
+						article.g_font-icons(name="font icon")
+							span.icon-microphone .icon-microphone
+							span.icon-bomb .icon-bomb
+							span.icon-transformers .icon-transformers
+							span.icon-atom .icon-atom
+							span.icon-spaceinvaders .icon-spaceinvaders
+							span.icon-diamond .icon-diamond
+
+					//-- favicons --
+					if favicons == "true"
+						article.g_favicons(name="favicons")
+							img(src="img/fav/favicon-310.png")
+							img(src="img/fav/favicon-196.png")
+							img(src="img/fav/favicon-160.png")
+							img(src="img/fav/favicon-144.png")
+							img(src="img/fav/favicon-114.png")
+							img(src="img/fav/favicon-96.png")
+							img(src="img/fav/favicon-70.png")
+							img(src="img/fav/favicon-57.png")
+							img(src="img/fav/favicon-32.png")
+							img(src="img/fav/favicon-16.png")
+
+				//-- botons --
+				if botons == "true"
+					section#g_botons(name="botons")
+						button.btn1 .btn1
+						button.btn2 .btn2
+						button.btn3 .btn3
+						button.btn4 .btn4
+						button.btn5 .btn5
+
+				//-- formulari --
+				if formulari == "true"
+					section#g_formulari(name="formulari")
+						figure.form-exemple
+							form(action="#", method="post")
+								fieldset
+									.form-name
+										label(for="name") Nom
+										input(type="text", name="name", tabindex="1", value="", id="name")
+									.form-text_area
+										label(for="textarea") Missatge
+										textarea(cols="40" rows="10" name="textarea" id="textarea")
+
+									button(type="submit" value="Submit").form-send enviar
+
+
+
+
+block scripts
+
+include includes/_mixins

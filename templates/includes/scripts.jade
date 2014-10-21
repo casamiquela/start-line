@@ -1,0 +1,10 @@
+script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js')
+script(src='#{folder_js}/#{scripts}.js')
+
+//- ~~~~~ svg fallback ~~~~~
+//- this will tell the plugin to not check images with a class of 'nocheck'
+//- script svgeezy.init('nocheck', 'png')
+
+
+//- ~~~~~ scroll to ~~~~~
+script $(function(){$("a[href*=#]:not([href=#])").click(function(){if(location.pathname.replace(/^\//,"")===this.pathname.replace(/^\//,"")&&location.hostname===this.hostname){var t=$(this.hash);if(t=t.length?t:$("[name="+this.hash.slice(1)+"]"),t.length)return $("html,body").animate({scrollTop:t.offset().top},900),!1}})});

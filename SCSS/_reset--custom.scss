@@ -1,0 +1,113 @@
+/*===============================
+		· Custom Reset / Normalize
+================================*/
+
+
+html {
+	background-color: $html-bg;
+}
+
+body {
+	background-color : transparent;
+	font-family      : $base-fontfamily;
+	line-height      : $base-lineheight;
+	tex-rendering 	 : optimizeLegibility; //desactivar en páginas con mucho texto
+	//@include alpha-col(color, $black, black);
+
+	// @extend %animated;
+	// @extend %fadeIn;
+	// display: flex;
+	// flex-flow: column wrap;
+}
+
+
+// Tipografia ///////////////////////////////////////////////////////////////
+
+small, .small {
+	@include font-size($small-fontsize);
+}
+
+nav ul li, nav a li {list-style: none;}
+
+ul{@include list-style($ul-list-style);}
+ol{@include list-style($ol-list-style);}
+
+
+b, strong, .strong {font-weight: $fontweight-body--bold ;}
+
+em, i, .em {
+	font-style  : italic;
+	font-weight : $fontweight-body--normal ;
+}
+
+h1, h2, h3, h4, h5 {
+	font-family   : $base-heading-font;
+	em, i, .em {font-weight: inherit;}
+}
+
+p, ol, ul, dl {
+	@include font-size($base-fontsize);
+	line-height    : $base-lineheight;
+	font-weight    : $fontweight-body--normal ;
+	color          : $base-color;
+	letter-spacing : $base-letterspacing;
+}
+
+// Links ///////////////////////////////////////////////////////////////
+
+button, a, a:hover, a:link, a:visited, a:focus, a:active {
+	cursor          : pointer;
+	text-decoration : none;
+	color           : inherit;
+}
+
+// Address `outline` inconsistency between Chrome and other browsers.
+a:focus {outline: thin dotted;}
+
+
+// Improve readability when focused and also mouse hovered in all browsers.
+a:active, a:hover { outline: 0;}
+
+
+
+// Custom Highlight ///////////////////////////////////////////////////////////////
+::-moz-selection {
+	// background-color: $highlight-bg;
+	@include alpha-col(background-color, $highlight-bg, $yellow);
+	color: $highlight-text;
+}
+
+::selection {
+	// background-color: $highlight-bg;
+	@include alpha-col(background-color, $highlight-bg, $yellow);
+	color: $highlight-text;
+}
+
+
+
+/////////// Poco Uso
+
+// audio, canvas, video {
+// 	display:inline-block;
+// }
+
+// audio:not([controls]) {
+// 	display:none;
+// 	height:0;
+// }
+// dfn {
+// 	font-style:italic;
+// }
+// mark {
+// 	background:#ff0;
+// 	color:#000;
+// }
+// code, kbd, pre, samp {
+// 	font-family:monospace, serif;
+// 	font-size:1em;
+// }
+// pre {
+// 	white-space:pre;
+// 	white-space:pre-wrap;
+// 	word-wrap:break-word;
+// }

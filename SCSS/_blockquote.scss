@@ -1,0 +1,19 @@
+// ~~~~ style I ~~~~
+
+blockquote {
+	border-left: solid round($gutterwidth/2) $primary-color-alt;
+	width: $page-width;
+	max-width: 600px;
+	padding: $gutterwidth*2;
+	background: white;
+	p {
+		@include font-size ($blockquote-p);
+		padding-bottom: $gutterwidth;
+	}
+}
+
+cite {
+	@include font-size ($blockquote-cite);
+	&:before {content: '\2014 \00A0';}
+
+}

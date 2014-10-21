@@ -1,0 +1,136 @@
+//============================
+//		·  Setup
+//============================
+
+
+$max-width   : 950px;
+$gutterwidth : round(($goldenratio * 14) * 1px); // r(gr*14)= 23
+
+$page-width: 82%;
+
+$primary-color         : $red;
+$primary-color-alt     : $salmon;
+$secondary-color       : $turquesa;
+$secondary-color-alt   : $turquesa-d;
+
+$html-bg               : $white;
+
+$highlight-bg          : rgba(#D5D5D5, 0.6);
+$highlight-text        : inherit;
+
+$color-links    	     : $primary-color;
+$color-links-hover  	 : $secondary-color-alt;
+
+
+
+
+//		  Tipografia
+//============================
+
+//Segons font de Typekit
+$fontweight-body--light     : 200;
+$fontweight-body--normal    : 300;
+$fontweight-body--bold      : 700;
+
+$fontweight-heading--light  : 100;
+$fontweight-heading--normal : 400;
+$fontweight-heading--bold   : 700;
+
+
+
+//Nom de les fonts de Typekit
+$tk-serif-font  : "chaparral-pro"; 
+$tk-sans-font   : "nudista-web"; 
+
+
+//Default per p, ol, ul, dl
+$golden-ratio-factor: 21;
+$base-fontsize      : golden-ratio($golden-ratio-factor,  0);
+$base-lineheight    : 1.54;
+$base-letterspacing : .07rem;
+$base-color         : $black;
+$text-indent        : 5%;
+
+
+$h1-fontsize      : golden-ratio(70,  0);
+$h2-fontsize      : golden-ratio(55,  0);
+$h3-fontsize      : golden-ratio(34,  0);
+$h4-fontsize      : golden-ratio(21,  0);
+$h5-fontsize      : golden-ratio(13,  0);
+
+$h1-fontsize--mob : golden-ratio($h1-fontsize,  -2);
+$h2-fontsize--mob : golden-ratio($h2-fontsize,  -2);
+$h3-fontsize--mob : golden-ratio($h3-fontsize,  -2);
+$h4-fontsize--mob : golden-ratio($h4-fontsize ,  -2);
+$h5-fontsize--mob : golden-ratio($h5-fontsize ,  -2);
+
+
+$h1-lineheight : 1.618;
+$h2-lineheight : 1;
+$h3-lineheight : 1.618;
+$h4-lineheight : 1.618;
+$h5-lineheight : 0.618;
+
+$h1-color : $base-color;
+$h2-color : $base-color;
+$h3-color : $base-color;
+$h4-color : $base-color;
+$h5-color : $base-color;
+
+$h1-fontweight : $fontweight-heading--normal ;
+$h2-fontweight : $fontweight-heading--normal ;
+$h3-fontweight : $fontweight-heading--normal ;
+$h4-fontweight : $fontweight-heading--normal ;
+$h5-fontweight : $fontweight-heading--normal ;
+
+
+$h1-letterspacing : $base-letterspacing;
+$h2-letterspacing : $base-letterspacing;
+$h3-letterspacing : $base-letterspacing;
+$h4-letterspacing : $base-letterspacing;
+$h5-letterspacing : $base-letterspacing;
+
+
+$small-fontsize  : round($goldenratio * 11);
+
+$blockquote-p    : round($goldenratio * 13);
+$blockquote-cite : round($blockquote-p / 1.1);
+
+$ul-list-style : circle;
+$ol-list-style : decimal;
+
+
+
+//		  font-stack
+//============================
+
+
+// Sans-serif //
+$fontfamily-sansserif        : "Helvetica Neue", Helvetica, Arial, sans-serif;
+$fontfamily-trebuchet        : "Segoe UI", Candara, "Bitstream Vera Sans", "DejaVu Sans", "Bitstream Vera Sans", "Trebuchet MS", Verdana, "Verdana Ref", sans-serif;
+$fontfamily-verdana          : Corbel, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", "Bitstream Vera Sans", "Liberation Sans", Verdana, "Verdana Ref", sans-serif;
+$fontfamily-monospace        : "Andale Mono", "Andale Mono WT", Consolas, "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
+
+// Serif //
+$fontfamily-serif            : Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif;
+$fontfamily-times            : Cambria, "Hoefler Text", Utopia, "Liberation Serif", "Nimbus Roman No9 L Regular", Times, "Times New Roman", serif;
+$fontfamily-maquina-escribir : "American Typewriter", "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+
+
+//  · tipografia básica
+//////////////////////////////
+
+// Definimos el fontfamily del texto y los encabezados
+$base-fontfamily     : #{$tk-serif-font}, $fontfamily-serif;
+$heading-fontfamily  : #{$tk-sans-font}, $fontfamily-sansserif;
+ %heading-family {font-family: $heading-fontfamily;}
+
+// $guia-sans: "tk-futura-pt", $fontfamily-sansserif;
+
+$base-heading-font       : $heading-fontfamily; // what for??????
+$base-heading-fontweight : $fontweight-heading--light;
+$base-heading-color      : inherit;
+
+$p-weight                : $fontweight-body--normal ;
+$p-fontsize              : $base-fontsize;
+$p-line_height 					 : $base-lineheight;
